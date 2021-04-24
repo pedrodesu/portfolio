@@ -1,0 +1,67 @@
+@import url('https://rsms.me/inter/inter.css');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    html {
+        font-family: 'Inter', sans-serif;
+    }
+
+    @supports (font-variation-settings: normal) {
+        html {
+            font-family: 'Inter var', sans-serif;
+        }
+    }
+
+    h1 {
+        @apply font-semibold text-h1;
+    }
+
+    h2 {
+        @apply font-medium text-h2;
+    }
+
+    h3 {
+        @apply font-medium text-h3;
+    }
+
+    p,
+    span {
+        @apply text-paragraph;
+    }
+
+    div#blog h1 {
+        @apply mt-7;
+    }
+
+    div#blog h2 {
+        @apply mt-6;
+    }
+
+    div#blog h3 {
+        @apply mt-5;
+    }
+
+    div#blog p,
+    div#blog span {
+        @apply mt-4;
+    }
+}
+
+div#__next {
+    @apply flex flex-col min-h-screen;
+}
+
+main {
+    @apply flex-1;
+}
+
+div.footnotes hr {
+    @apply my-8;
+}
+
+div.footnotes li {
+    @apply text-paragraph;
+}
