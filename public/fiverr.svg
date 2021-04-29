@@ -1,0 +1,4 @@
+<svg height="1.25em" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+	<path d="M432,416V160H176v-16c0-26.464,21.536-48,48-48h48V0h-48C144.608,0,80,64.608,80,144v16H16v96h64
+		v160H16v96h224v-96h-64V256h160.896v160H272v96h224v-96H432z"/>
+</svg>

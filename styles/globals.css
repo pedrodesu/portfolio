@@ -1,61 +1,40 @@
 @import url('https://rsms.me/inter/inter.css');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
-    html {
-        font-family: 'Inter', sans-serif;
+    div#__next {
+        @apply flex flex-col min-h-screen;
     }
 
-    @supports (font-variation-settings: normal) {
-        html {
-            font-family: 'Inter var', sans-serif;
-        }
+    main {
+        @apply flex-1;
     }
 
-    h1 {
-        @apply font-semibold text-h1;
-    }
-
-    h2 {
-        @apply font-medium text-h2;
-    }
-
-    h3 {
-        @apply font-medium text-h3;
+    button {
+        @apply focus:outline-none;
     }
 
     p,
-    span {
-        @apply text-paragraph;
+    span,
+    a {
+        @apply text-p;
     }
 
-    div#blog h1 {
-        @apply mt-7;
+    h1 {
+        @apply text-h1 font-semibold;
     }
 
-    div#blog h2 {
-        @apply mt-6;
+    h2 {
+        @apply text-h2;
     }
 
-    div#blog h3 {
-        @apply mt-5;
+    h3 {
+        @apply text-h3;
     }
-
-    div#blog p,
-    div#blog span {
-        @apply mt-4;
-    }
-}
-
-div#__next {
-    @apply flex flex-col min-h-screen;
-}
-
-main {
-    @apply flex-1;
 }
 
 div.footnotes hr {
@@ -63,5 +42,13 @@ div.footnotes hr {
 }
 
 div.footnotes li {
-    @apply text-paragraph;
+    @apply text-blogP;
+}
+
+img.emoji {
+    @apply h-8 inline mb-2;
+}
+
+a.footnote-backref {
+    @apply ml-1;
 }

@@ -16,5 +16,5 @@ const config = {
 }
 
 module.exports = withPlugins([
-    withMDX
+    withMDX,
 ], config);

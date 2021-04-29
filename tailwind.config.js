@@ -5,24 +5,33 @@ module.exports = {
     purge: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
     darkMode: false,
     theme: {
+        fontFamily: {
+            serif: ['Inter var', 'Inter', 'ui-serif'],
+            mono: ['JetBrains Mono', 'ui-monospace']
+        },
         fontSize: {
-            h1: ['36px', { letterSpacing: '-0.022em' }],
-            h2: ['30px', { letterSpacing: '-0.021em' }],
-            h3: ['26px', { letterSpacing: '-0.02em' }],
-            paragraph: ['20px', { letterSpacing: '-0.017em' }],
+            blogH1: ['36px', { letterSpacing: '-0.022em' }],
+            blogH2: ['28px', { letterSpacing: '-0.021em' }],
+            blogH3: ['25px', { letterSpacing: '-0.02em' }],
+            blogP: ['20px', { letterSpacing: '-0.017em' }],
+            jumbo: ['96px', { letterSpacing: '-0.022em' }],
+            h1: ['40px', { letterSpacing: '-0.022em' }],
+            h2: ['31px', { letterSpacing: '-0.021em' }],
+            h3: ['22px', { letterSpacing: '-0.018em' }],
+            p: ['18px', { letterSpacing: '-0.014em' }],
         },
         colors: {
             gray,
-            white
+            white,
+            primary: '#2948ff',
         },
         container: {
             center: true,
             padding: {
-                DEFAULT: '1rem',
-                sm: '2rem',
-                lg: '4rem',
-                xl: '5rem',
-                '2xl': '6rem',
+                DEFAULT: '2rem',
+                sm: '4rem',
+                lg: '6rem',
+                xl: '10rem',
             },
         },
         extend: {},
