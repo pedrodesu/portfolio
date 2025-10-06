@@ -1,10 +1,13 @@
 /* @refresh reload */
 
 import { Router } from "@solidjs/router";
+import { inject } from '@vercel/analytics';
 import "solid-devtools";
 import { render, Suspense } from "solid-js/web";
 import routes from "~solid-pages";
 import "./styles.css";
+
+inject();
 
 // biome-ignore lint/style/noNonNullAssertion: element is guaranteed to exist
 const root = document.getElementById("root")!;
