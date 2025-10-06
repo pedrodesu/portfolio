@@ -1,0 +1,12 @@
+@layer reset, base, tokens, recipes, utilities;
+
+:root {
+    --font-title: "Cal Sans", sans-serif;
+    color: white;
+    background: #151515;
+}
+
+#root {
+    min-height: 100vh;
+    overflow-x: clip;
+}

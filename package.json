@@ -1,0 +1,32 @@
+{
+  "name": "portfolio",
+  "type": "module",
+  "scripts": {
+    "prepare": "panda codegen",
+    "start": "vite",
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@pandacss/dev": "^1.4.1",
+    "solid-devtools": "^0.34.3",
+    "vite": "^7.1.9",
+    "vite-plugin-pages": "^0.33.1",
+    "vite-plugin-solid": "^2.11.9",
+    "vite-plugin-solid-svg": "^0.8.1"
+  },
+  "dependencies": {
+    "@ark-ui/solid": "^5.25.1",
+    "@biomejs/biome": "^2.2.5",
+    "@fontsource/cal-sans": "^5.2.3",
+    "@fontsource/metropolis": "^5.2.5",
+    "@solidjs/router": "^0.15.3",
+    "@tabler/icons-solidjs": "^3.35.0",
+    "animejs": "^4.2.1",
+    "solid-js": "^1.9.9",
+    "solid-transition-group": "^0.3.0",
+    "twemoji": "^14.0.2"
+  }
+}
