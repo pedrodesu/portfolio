@@ -674,7 +674,7 @@ function HorizontalWrapper() {
 	});
 
 	return (
-		<div ref={containerRef} class={css({ minH: "400vh", bg: "#000" })}>
+		<div ref={containerRef} class={css({ minH: { base: "500vh", xl: "300vh" }, bg: "#000", })}>
 			<div
 				ref={divRef}
 				class={flex({ alignItems: "baseline", position: "sticky", top: 0 })}
