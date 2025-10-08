@@ -631,7 +631,7 @@ function Menu() {
                         const ref = link === "timeline" ? refs().get("about")! : refs().get(link)!;
                         if (link === "timeline") {
                           window.scrollTo({
-                            top: ref.getBoundingClientRect().top + scrollY + (70 / 100) * innerHeight,
+                            top: ref.getBoundingClientRect().top + scrollY + (110 / 100) * innerHeight,
                             behavior: "smooth"
                           });
                         } else {
@@ -668,13 +668,13 @@ function HorizontalWrapper() {
 				target: containerRef,
 				sync: true,
 				enter: "top top",
-				leave: "bottom center-=5%",
+				leave: "bottom center",
 			}),
 		});
 	});
 
 	return (
-		<div ref={containerRef} class={css({ h: "300vh", bg: "#000" })}>
+		<div ref={containerRef} class={css({ minH: "400vh", bg: "#000" })}>
 			<div
 				ref={divRef}
 				class={flex({ alignItems: "baseline", position: "sticky", top: 0 })}
