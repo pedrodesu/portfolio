@@ -21,7 +21,6 @@ import {
 import { animate, createTimeline, onScroll, splitText, stagger } from "animejs";
 import { type Component, For, onMount, Show } from "solid-js";
 import { Portal } from "solid-js/web";
-import { TransitionGroup } from "solid-transition-group";
 import twemoji from "twemoji";
 import { css, cx } from "../../styled-system/css";
 import {
@@ -103,7 +102,7 @@ function Landing() {
 					css({
 						position: "absolute",
 						fontSize: { base: "lg", xl: "xl" },
-						bottom: "3rem",
+						bottom: "5rem",
 						textTransform: "uppercase",
 						color: "zinc.400",
 						zIndex: 10,
@@ -430,6 +429,7 @@ function Footer() {
 						justify: "center",
 						alignItems: "start",
 						pt: "10rem",
+						pb: "2rem"
 					}),
 				)}
 			>
@@ -517,24 +517,33 @@ function Footer() {
 						</ul>
 					</div>
 				</div>
-				<p
-					ref={footerTextRef}
-					class={css({
-						fontFamily: "Metropolis",
-						fontWeight: "medium",
-						fontSize: { base: "md", xl: "xl" },
-						color: "zinc.200",
-					})}
+				<div
+		      class={cx(
+						css({
+  						fontFamily: "Metropolis",
+  						fontWeight: "medium",
+  						fontSize: { base: "md", xl: "xl" },
+  						color: "zinc.200",
+  					}),
+						vstack({ gap: "1rem", alignItems: "start" })
+					)}
 				>
-					Handcrafted and designed with ❤️ in 🇵🇹 by Pedro Ferreira
-				</p>
+          <p>
+   					Proudly powered by{" "}
+   					<a href="https://www.solidjs.com/" target="_blank" rel="noreferrer">Solid.js</a>
+            {" "}and hosted by{" "}
+   					<a href="https://vercel.com/" target="_blank" rel="noreferrer">Vercel</a>.
+  				</p>
+          <p ref={footerTextRef}>
+   					Handcrafted and designed with ❤️ in 🇵🇹 by Pedro Ferreira.
+  				</p>
+				</div>
 			</div>
 		</section>
 	);
 }
 
 function Menu() {
-	let dialogBackdropRef!: HTMLDivElement;
 	let dialogContentRef!: HTMLDivElement;
 
   const SECTIONS = [
@@ -546,23 +555,7 @@ function Menu() {
   const { refs } = useSection();
 
 	return (
-		<Dialog.Root
-			unmountOnExit
-			onOpenChange={({ open }) => {
-				if (open) {
-					createTimeline()
-						.add(dialogBackdropRef, {
-							backdropFilter: "blur(8px)",
-							backgroundColor: ["#0000", "#000c"],
-							duration: 200,
-						})
-						.add(dialogContentRef, {
-							opacity: 1,
-							duration: 200,
-						});
-				}
-			}}
-		>
+		<Dialog.Root>
 			<Portal>
 				<Dialog.Trigger
 					class={css({
@@ -584,77 +577,76 @@ function Menu() {
 				>
 					<IconMenu size={36} />
 				</Dialog.Trigger>
-				<TransitionGroup
-					onExit={(_, done) => {
-						const tl = createTimeline()
-							.add(dialogContentRef, {
-								opacity: 0,
-								duration: 200,
-							})
-							.add(dialogBackdropRef, {
-								backdropFilter: "blur(0px)",
-								backgroundColor: ["#000c", "#0000"],
-								duration: 200,
-							});
 
-						tl.then(done);
-					}}
-				>
-					<Dialog.Backdrop
-						ref={dialogBackdropRef}
-						class={css({
+				<Dialog.Backdrop
+				  class={css({
+            position: "fixed",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            zIndex: 100,
+            pointerEvents: "auto",
+            background: "rgba(0, 0, 0, 0.75)",
+            "&[data-state=open]": {
+              animation: 'dialogBackdropIn 0.25s ease-in-out forwards'
+            },
+            "&[data-state=closed]": {
+              animation: 'dialogBackdropOut 0.25s ease-in-out forwards'
+            },
+          })}
+        />
+
+				<Dialog.Positioner
+					class={cx(
+						css({
 							position: "fixed",
 							top: 0,
 							left: 0,
 							width: "100%",
 							height: "100%",
 							zIndex: 100,
-						})}
-					/>
-					<Dialog.Positioner
-						class={cx(
-							css({
-								position: "fixed",
-								top: 0,
-								left: 0,
-								width: "100%",
-								height: "100%",
-								zIndex: 100,
-							}),
-							center(),
-						)}
+						}),
+						center(),
+					)}
+				>
+					<Dialog.Content
+						ref={dialogContentRef}
+						class={css({
+    				  "&[data-state=open]": {
+                animation: 'dialogContentIn 0.25s ease-in-out forwards'
+              },
+              "&[data-state=closed]": {
+                animation: 'dialogContentOut 0.25s ease-in-out forwards'
+              },
+            })}
 					>
-						<Dialog.Content
-							ref={dialogContentRef}
-							class={cx(css({ opacity: 0 }), center())}
-						>
-							<ul class={vstack({ gap: 4, fontSize: "3rem" })}>
-							  <For each={SECTIONS}>
-									{
-  									([link, title]) => (
-  									  <li>
-                        <Dialog.CloseTrigger onClick={() => {
-                          // biome-ignore lint/style/noNonNullAssertion: Refs are hardcoded and guaranteed to be defined
-                          const ref = link === "timeline" ? refs().get("about")! : refs().get(link)!;
-                          if (link === "timeline") {
-                            window.scrollTo({
-                              top: ref.getBoundingClientRect().top + scrollY + (225 / 100) * innerHeight,
-                              behavior: "smooth"
-                            });
-                          } else {
-                            ref.scrollIntoView({ behavior: "smooth" });
-                          }
-                        }}>
-                          {title}
-                        </Dialog.CloseTrigger>
-                      </li>
-  									)
-									}
-								</For>
-							</ul>
-						</Dialog.Content>
-					</Dialog.Positioner>
-				</TransitionGroup>
+						<ul class={vstack({ gap: 4, fontSize: "3rem" })}>
+						  <For each={SECTIONS}>
+								{
+ 									([link, title]) => (
+ 									  <li>
+                      <Dialog.CloseTrigger onClick={() => {
+                        // biome-ignore lint/style/noNonNullAssertion: Refs are hardcoded and guaranteed to be defined
+                        const ref = link === "timeline" ? refs().get("about")! : refs().get(link)!;
+                        if (link === "timeline") {
+                          window.scrollTo({
+                            top: ref.getBoundingClientRect().top + scrollY + (115 / 100) * innerHeight,
+                            behavior: "smooth"
+                          });
+                        } else {
+                          ref.scrollIntoView({ behavior: "smooth" });
+                        }
+                      }}>
+                        {title}
+                      </Dialog.CloseTrigger>
+                    </li>
+ 									)
+								}
+							</For>
+						</ul>
+					</Dialog.Content>
+				</Dialog.Positioner>
 			</Portal>
 		</Dialog.Root>
 	);
@@ -676,13 +668,13 @@ function HorizontalWrapper() {
 				target: containerRef,
 				sync: true,
 				enter: "top top",
-				leave: "bottom center+=15%",
+				leave: "bottom center",
 			}),
 		});
 	});
 
 	return (
-		<div ref={containerRef} class={css({ h: "500vh", bg: "#000" })}>
+		<div ref={containerRef} class={css({ h: "425vh", bg: "#000" })}>
 			<div
 				ref={divRef}
 				class={flex({ alignItems: "baseline", position: "sticky", top: 0 })}

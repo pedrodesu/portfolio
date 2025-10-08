@@ -1,12 +1,39 @@
 @layer reset, base, tokens, recipes, utilities;
 
 :root {
-    --font-title: "Cal Sans", sans-serif;
-    color: white;
-    background: #151515;
+  --font-title: "Cal Sans", sans-serif;
+  color: white;
+  background: #151515;
 }
 
 #root {
-    min-height: 100vh;
-    overflow-x: clip;
+  min-height: 100vh;
+  overflow-x: clip;
 }
+
+/* Put these on panda css */
+/*[data-part="backdrop"] {
+  backdrop-filter: blur(0px);
+  background-color: transparent;
+  transition:
+    backdrop-filter 200ms ease,
+    background-color 200ms ease;
+}
+
+[data-state="open"] [data-part="backdrop"] {
+  backdrop-filter: blur(8px);
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+[data-part="content"] {
+  opacity: 0;
+  transform: translateY(-10px);
+  transition:
+    opacity 200ms ease,
+    transform 200ms ease;
+}
+
+[data-state="open"] [data-part="content"] {
+  opacity: 1;
+  transform: translateY(0px);
+}*/

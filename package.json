@@ -11,7 +11,7 @@
   "license": "MIT",
   "devDependencies": {
     "@pandacss/dev": "^1.4.1",
-    "solid-devtools": "^0.34.3",
+    "solid-devtools": "^0.34.4",
     "vite": "^7.1.9",
     "vite-plugin-pages": "^0.33.1",
     "vite-plugin-solid": "^2.11.9",
@@ -25,9 +25,8 @@
     "@solidjs/router": "^0.15.3",
     "@tabler/icons-solidjs": "^3.35.0",
     "@vercel/analytics": "^1.5.0",
-    "animejs": "^4.2.1",
+    "animejs": "^4.2.2",
     "solid-js": "^1.9.9",
-    "solid-transition-group": "^0.3.0",
     "twemoji": "^14.0.2"
   }
 }

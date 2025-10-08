@@ -18,7 +18,50 @@ export default defineConfig({
 
 	// Useful for theme customization
 	theme: {
-		extend: {},
+		extend: {
+		  keyframes: {
+				dialogBackdropIn: {
+          from: {
+            opacity: 0,
+            backdropFilter: "blur(0px)",
+          },
+          to: {
+            opacity: 1,
+            backdropFilter: "blur(8px)",
+          }
+        },
+        dialogBackdropOut: {
+          from: {
+            opacity: 1,
+            backdropFilter: "blur(8px)",
+          },
+          to: {
+            opacity: 0,
+            backdropFilter: "blur(0px)",
+          },
+        },
+        dialogContentIn: {
+          from: {
+            opacity: 0,
+            transform: "translateY(10px)",
+          },
+          to: {
+            opacity: 1,
+            transform: "translateY(0)",
+          },
+        },
+        dialogContentOut: {
+          from: {
+            opacity: 1,
+            transform: "translateY(0)",
+          },
+          to: {
+            opacity: 0,
+            transform: "translateY(10px)",
+          },
+        }
+      },
+		},
 	},
 
 	// The output directory for your css system
