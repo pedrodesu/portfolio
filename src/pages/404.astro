@@ -1,0 +1,11 @@
+---
+import Layout from '@/layouts/Layout.astro'
+---
+
+<Layout>
+  <meta http-equiv="refresh" content="0;url=/" slot="head" />
+
+  <script is:inline>
+    window.location.href = '/';
+  </script>
+</Layout>

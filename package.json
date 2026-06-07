@@ -1,0 +1,27 @@
+{
+  "name": "portfolio",
+  "type": "module",
+  "version": "0.0.1",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "prepare": "panda codegen",
+    "dev": "astro dev",
+    "build": "astro build && rm -rf dist/resume",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@ark-ui/solid": "^5.37.1",
+    "@astrojs/solid-js": "^6.0.1",
+    "astro": "^6.4.4",
+    "astro-pdf": "^1.8.0",
+    "solid-js": "^1.9.13"
+  },
+  "devDependencies": {
+    "@iconify-json/tabler": "^1.2.35",
+    "@pandacss/dev": "^1.11.3",
+    "unplugin-icons": "^23.0.1"
+  }
+}

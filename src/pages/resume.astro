@@ -1,0 +1,17 @@
+---
+import { css, cx } from 'styled-system/css'
+import { flex } from 'styled-system/patterns'
+import Resume from '@/components/resume'
+import Layout from '@/layouts/Layout.astro'
+---
+
+<Layout class={cx('light', flex({ justify: 'center' }), css({ bg: { base: 'black', _print: 'white' } }))}>
+    <main class={css({
+        width: '210mm',
+        minHeight: '297mm',
+        padding: '15mm 12mm',
+        bg: 'white',
+      })}>
+          <Resume />
+    </main>
+</Layout>
