@@ -17,7 +17,7 @@ interface ListProps {
 }
 
 const List: Component<ListProps> = ({ items }) => (
-	<VStack alignItems="start" gap={8} as="ul">
+	<VStack alignItems="start" gap={8} as="ul" pl={{ base: 0, sm: 10 }}>
 		<For each={items}>
 			{(item, index) => (
 				<Wrap as="li">

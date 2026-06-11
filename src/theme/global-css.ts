@@ -11,7 +11,7 @@ export const globalCss = defineGlobalStyles({
 		html: {
 			colorPalette: 'gray',
 			scrollBehavior: 'smooth',
-			scrollSnapType: { md: 'y mandatory' },
+			scrollSnapType: 'y mandatory',
 		},
 		body: {
 			background: 'bg',

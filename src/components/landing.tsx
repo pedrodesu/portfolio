@@ -26,7 +26,7 @@ const Landing: Component = () => (
 				gap: { base: 10, xl: 20, '2xl': 30 },
 			}),
 			container(),
-			css({ scrollSnapAlign: 'start' }),
+			css({ scrollSnapAlign: 'start', pt: 10, lg: { pt: 0 } }),
 		)}
 		minH="screen"
 		id="about_me"
@@ -35,16 +35,18 @@ const Landing: Component = () => (
 			h="full"
 			justify="center"
 			alignItems="start"
-			gap={{ base: 4, sm: 8 }}
+			gap={{ base: 4, lg: 8 }}
 			flex={1}
 		>
 			<Box>
-				<Heading textStyle={{ base: '3xl', sm: '6xl' }}>Pedro Nobre</Heading>
-				<Heading textStyle={{ base: 'lg', sm: '2xl' }} color="gray.11">
+				<Heading textStyle={{ base: '4xl', lg: '6xl' }}>Pedro Nobre</Heading>
+				<Heading textStyle={{ base: 'xl', sm: '2xl' }} color="gray.11">
 					Systems & UI Engineer
 				</Heading>
 			</Box>
-			<Text textStyle={{ base: 'md', sm: 'lg' }}>{Description.LONG}</Text>
+			<Text textStyle={{ base: 'lg', sm: 'md', lg: 'lg' }}>
+				{Description.LONG}
+			</Text>
 			<HStack gap={4}>
 				<For each={SOCIALS}>
 					{({ icon, url }) => (

@@ -8,7 +8,7 @@ import { Text } from '@/components/ui/text'
 import * as ExperienceInfo from '@/info/experience'
 
 const listWith = (title: string, items: ExperienceInfo.Item[]) => () => (
-	<Wrap flexDirection="column" gap={6} pl={{ base: 0, sm: 10 }}>
+	<Wrap flexDirection="column" gap={6}>
 		<Heading textStyle="4xl">{title}</Heading>
 		<List
 			items={items.map(item => ({
@@ -29,10 +29,7 @@ const Experience: Component = () => (
 	<VStack
 		minH="screen"
 		id="experience"
-		class={cx(
-			container(),
-			css({ scrollSnapAlign: 'start', pt: 0, md: { pt: 32 } }),
-		)}
+		class={cx(container(), css({ scrollSnapAlign: 'start', pt: 20 }))}
 		gap={6}
 	>
 		<Grid columns={{ base: 1, lg: 2 }} gap={20} w="full">
@@ -43,7 +40,7 @@ const Experience: Component = () => (
 			fontFamily="mono"
 			fontSize="sm"
 			flexDirection="column"
-			py={4}
+			py={8}
 			textAlign="center"
 			id="footer"
 		>

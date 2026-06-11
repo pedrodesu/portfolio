@@ -23,9 +23,8 @@ const Navbar: Component = () => (
 		class={cx(
 			container(),
 			flex({
-				justify: 'end',
 				align: 'center',
-				justifyContent: 'space-between',
+				justify: 'space-between',
 			}),
 			css({
 				w: 'full',
@@ -38,14 +37,7 @@ const Navbar: Component = () => (
 			}),
 		)}
 	>
-		<HStack
-			class={css({
-				display: 'none',
-				sm: { display: 'flex' },
-			})}
-			as="ul"
-			gap={{ base: 6, sm: 8 }}
-		>
+		<HStack as="ul" gap={{ base: 6, sm: 8 }}>
 			<For each={LINKS}>
 				{item => (
 					<Box as="li" py="1rem">
