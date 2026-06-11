@@ -25,7 +25,7 @@ const Navbar: Component = () => (
 			flex({
 				justify: 'end',
 				align: 'center',
-				sm: { justifyContent: 'space-between' },
+				justifyContent: 'space-between',
 			}),
 			css({
 				w: 'full',
@@ -39,9 +39,12 @@ const Navbar: Component = () => (
 		)}
 	>
 		<HStack
-			class={css({ display: 'none', sm: { display: 'flex' } })}
+			class={css({
+				display: 'none',
+				sm: { display: 'flex' },
+			})}
 			as="ul"
-			gap={8}
+			gap={{ base: 6, sm: 8 }}
 		>
 			<For each={LINKS}>
 				{item => (
@@ -59,7 +62,9 @@ const Navbar: Component = () => (
 				variant="surface"
 				asChild={props => (
 					<a href={`mailto:me@pedrodesu.xyz`} {...props()}>
-						Email me
+						<span class={css({ display: 'none', sm: { display: 'inline' } })}>
+							Email me
+						</span>
 						<IconSend />
 					</a>
 				)}
@@ -69,7 +74,9 @@ const Navbar: Component = () => (
 				variant="subtle"
 				asChild={props => (
 					<a target="_blank" rel="noopener" href="/resume.pdf" {...props()}>
-						Résumé
+						<span class={css({ display: 'none', sm: { display: 'inline' } })}>
+							Résumé
+						</span>
 						<IconArrowDown />
 					</a>
 				)}
