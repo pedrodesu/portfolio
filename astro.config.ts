@@ -1,25 +1,30 @@
 import solidJs from '@astrojs/solid-js'
 import { defineConfig, fontProviders } from 'astro/config'
-import pdf from 'astro-pdf'
+// TOOD integrate automatic pdf generation when it works properly. until then we'll just use our manually generated PDF.
+// import pdf from 'astro-pdf'
 import Icons from 'unplugin-icons/vite'
 
 // https://astro.build/config
 export default defineConfig({
 	integrations: [
 		solidJs(),
-		pdf({
-			pages: {
-				'/resume': true,
-			},
-			baseOptions: {
-				pdf: {
-					format: 'A4',
-					printBackground: true,
-				},
+		// pdf({
+		// 	pages: {
+		// 		'/resume': true,
+		// 	},
+		// 	launch: {
+		// 		args: chromium.args,
+		// 		executablePath: await chromium.executablePath(),
+		// 	},
+		// 	baseOptions: {
+		// 		pdf: {
+		// 			format: 'A4',
+		// 			printBackground: true,
+		// 		},
 
-				waitUntil: 'networkidle0',
-			},
-		}),
+		// 		waitUntil: 'networkidle0',
+		// 	},
+		// }),
 	],
 	fonts: [
 		{
