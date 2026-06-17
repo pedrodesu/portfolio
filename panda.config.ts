@@ -24,18 +24,18 @@ export default defineConfig({
 
 	theme: {
 		extend: {
-			animationStyles: animationStyles,
-			recipes: recipes,
-			slotRecipes: slotRecipes,
-			keyframes: keyframes,
-			layerStyles: layerStyles,
-			textStyles: textStyles,
+			animationStyles,
+			recipes,
+			slotRecipes,
+			keyframes,
+			layerStyles,
+			textStyles,
 
 			tokens: {
-				colors: colors,
-				durations: durations,
-				fonts: fonts,
-				zIndex: zIndex,
+				colors,
+				durations,
+				fonts,
+				zIndex,
 			},
 
 			semanticTokens: {
@@ -82,13 +82,13 @@ export default defineConfig({
 					},
 
 					gray: slate,
-					red: red,
-					green: green,
+					red,
+					green,
 				},
 
-				shadows: shadows,
+				shadows,
 
-				radii: radii,
+				radii,
 			},
 		},
 	},
@@ -106,8 +106,8 @@ export default defineConfig({
 
 	outdir: 'styled-system',
 
-	globalCss: globalCss,
-	conditions: conditions,
+	globalCss,
+	conditions,
 
 	plugins: [
 		{

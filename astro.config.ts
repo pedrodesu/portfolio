@@ -1,30 +1,43 @@
+import fs from 'node:fs/promises'
+import path from 'node:path'
 import solidJs from '@astrojs/solid-js'
+import vercel from '@astrojs/vercel'
+import chromium from '@sparticuz/chromium'
 import { defineConfig, fontProviders } from 'astro/config'
-// TOOD integrate automatic pdf generation when it works properly. until then we'll just use our manually generated PDF.
-// import pdf from 'astro-pdf'
 import Icons from 'unplugin-icons/vite'
 
-// https://astro.build/config
+const realPath = await chromium.executablePath()
+
+// We need these hacks for the current version of `astro-pdf` to work. This should be properly fixed in the next version.
+await fs.writeFile(
+	path.resolve('.puppeteerrc.ts'),
+	`export default {
+  executablePath: '${realPath}',
+  skipDownload: true,
+  }`,
+)
+
+const { default: pdf } = await import('astro-pdf')
+
 export default defineConfig({
+	adapter: vercel({ webAnalytics: { enabled: true } }),
 	integrations: [
 		solidJs(),
-		// pdf({
-		// 	pages: {
-		// 		'/resume': true,
-		// 	},
-		// 	launch: {
-		// 		args: chromium.args,
-		// 		executablePath: await chromium.executablePath(),
-		// 	},
-		// 	baseOptions: {
-		// 		pdf: {
-		// 			format: 'A4',
-		// 			printBackground: true,
-		// 		},
-
-		// 		waitUntil: 'networkidle0',
-		// 	},
-		// }),
+		pdf({
+			pages: {
+				'/resume': true,
+			},
+			launch: {
+				args: chromium.args,
+			},
+			baseOptions: {
+				pdf: {
+					format: 'A4',
+					printBackground: true,
+				},
+				waitUntil: 'networkidle0',
+			},
+		}),
 	],
 	fonts: [
 		{

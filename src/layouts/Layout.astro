@@ -1,5 +1,6 @@
 ---
 import { Font } from 'astro:assets'
+import Analytics from '@vercel/analytics/astro'
 
 import '../index.css'
 
@@ -22,6 +23,7 @@ const { class: className } = Astro.props
         <Font cssVariable="--font-metropolis" />
         <Font cssVariable="--font-jetbrains-mono" />
         <Font cssVariable="--font-cal-sans" />
+        <Analytics />
     </head>
     <body class={className}>
         <slot />

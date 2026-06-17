@@ -78,10 +78,10 @@ export const ExperienceBlock: Component<{
 }> = props => (
 	<Wrap>
 		<Heading textStyle="lg">{props.title}</Heading>
-		<VStack as="ul" alignItems="start" gap={4}>
+		<VStack as="ul" alignItems="start" gap={6}>
 			<For each={props.items}>
 				{item => (
-					<Wrap as="li">
+					<Wrap as="li" gap={2}>
 						<Heading fontFamily="body">
 							{item.role} ·{' '}
 							<Text display="inline" fontFamily="title">
@@ -102,8 +102,8 @@ export const ExperienceBlock: Component<{
 								{item => <Text as="li">{item}</Text>}
 							</For>
 						</VStack>
-						<Text mt={1} ml={4} textStyle="xs" fontFamily="mono">
-							{item.fields.join(' · ')}
+						<Text mt={1} textStyle="xs" fontFamily="mono">
+							—<span class={css({ ml: 4 })}>{item.fields.join(' · ')}</span>
 						</Text>
 					</Wrap>
 				)}
