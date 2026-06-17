@@ -21,7 +21,7 @@
   "scripts": {
     "prepare": "panda codegen",
     "dev": "astro dev",
-    "build": "astro build && rm -rf dist/resume",
+    "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"
   },

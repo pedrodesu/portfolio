@@ -7,10 +7,11 @@ import Layout from '@/layouts/Layout.astro'
 
 <Layout class={cx('light', flex({ justify: 'center' }), css({ bg: { base: 'black', _print: 'white' } }))}>
     <main class={css({
+        boxSizing: 'border-box',
         width: '210mm',
         minHeight: '297mm',
-        padding: '15mm 12mm',
-        bg: 'white',
+        padding: { base: '15mm 12mm', _print: '10mm 12mm' },
+        bg: 'white'
       })}>
           <Resume />
     </main>

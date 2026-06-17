@@ -1,1 +1,14 @@
 @layer reset, base, tokens, recipes, utilities;
+
+@media print {
+  html {
+    /* Subtle scale-down pulls text upward across the entire document */
+    font-size: 95%;
+  }
+
+  /* Tighten line spacing globally for print */
+  body {
+    /* biome-ignore lint/complexity/noImportantStyles: we want to override the default line-height for print */
+    line-height: 1.4 !important;
+  }
+}
