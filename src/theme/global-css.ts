@@ -18,5 +18,8 @@ export const globalCss = defineGlobalStyles({
 			color: 'fg.default',
 			fontFamily: 'body',
 		},
+		'body > *:not(header)': {
+			scrollSnapAlign: 'start',
+		},
 	},
 })

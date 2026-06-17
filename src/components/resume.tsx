@@ -27,6 +27,7 @@ export const SimpleBlock: Component<{
 )
 
 export const TitledBlock: Component<{
+	class?: string
 	title?: string
 	items: {
 		title: string
@@ -46,7 +47,7 @@ export const TitledBlock: Component<{
 				{item => (
 					<li>
 						<Heading mb={1}>{item.title}</Heading>
-						<Text>{item.description}</Text>
+						<Text class={props.class}>{item.description}</Text>
 					</li>
 				)}
 			</For>
@@ -75,15 +76,13 @@ export const ExperienceBlock: Component<{
 	title: string
 	items: Experience.Item[]
 }> = props => (
-	<Box>
-		<Heading textStyle="lg" mb={2}>
-			{props.title}
-		</Heading>
+	<Wrap>
+		<Heading textStyle="lg">{props.title}</Heading>
 		<VStack as="ul" alignItems="start" gap={4}>
 			<For each={props.items}>
 				{item => (
-					<li>
-						<Heading fontFamily="body" mb={2}>
+					<Wrap as="li">
+						<Heading fontFamily="body">
 							{item.role} ·{' '}
 							<Text display="inline" fontFamily="title">
 								{item.at}
@@ -103,11 +102,14 @@ export const ExperienceBlock: Component<{
 								{item => <Text as="li">{item}</Text>}
 							</For>
 						</VStack>
-					</li>
+						<Text mt={1} ml={4} textStyle="xs" fontFamily="mono">
+							{item.fields.join(' · ')}
+						</Text>
+					</Wrap>
 				)}
 			</For>
 		</VStack>
-	</Box>
+	</Wrap>
 )
 
 const Resume: Component = () => (
@@ -146,6 +148,7 @@ const Resume: Component = () => (
 			/>
 			<TitledBlock
 				title="Skills"
+				class={css({ fontFamily: 'mono', fontSize: 'xs' })}
 				items={[
 					{
 						title: 'Programming languages',
@@ -158,7 +161,7 @@ const Resume: Component = () => (
 							'Golang',
 							'C',
 							'Java',
-						].join(', '),
+						].join(' · '),
 					},
 					{
 						title: 'Technologies & Environments',
@@ -177,7 +180,7 @@ const Resume: Component = () => (
 							'SQL',
 							'LLVM',
 							'*nix',
-						].join(', '),
+						].join(' · '),
 					},
 					{
 						title: 'Tooling & Platforms',
@@ -189,7 +192,7 @@ const Resume: Component = () => (
 							'Heroku',
 							'Firebase',
 							'Docker',
-						].join(', '),
+						].join(' · '),
 					},
 				]}
 			/>

@@ -30,6 +30,7 @@ const Navbar: Component = () => (
 				w: 'full',
 				h: 14,
 				position: 'fixed',
+				top: 0,
 				zIndex: 'sticky',
 				bg: 'bg',
 				borderBottom: '1px solid',

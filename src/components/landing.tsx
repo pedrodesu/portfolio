@@ -1,62 +1,59 @@
 import { type Component, For } from 'solid-js'
-import { css, cx } from 'styled-system/css'
-import { Box, HStack, VStack } from 'styled-system/jsx'
-import { container, flex } from 'styled-system/patterns'
-import github from '@/assets/github.png'
-import linkedin from '@/assets/linkedin.png'
+import { css } from 'styled-system/css'
+import { Box, Center, HStack, Wrap } from 'styled-system/jsx'
+import { container } from 'styled-system/patterns'
 import me from '@/assets/me.jpg'
 import { Heading } from '@/components/ui/heading'
 import { Image } from '@/components/ui/image'
 import { Text } from '@/components/ui/text'
 import * as Description from '@/info/description'
+import IconBrandGithubFilled from '~icons/tabler/brand-github-filled'
+import IconBrandLinkedinFilled from '~icons/tabler/brand-linkedin-filled'
 
 const SOCIALS = [
 	{
-		icon: linkedin,
+		icon: IconBrandLinkedinFilled,
 		url: 'https://linkedin.com/in/pedronmferreira/',
 	},
-	{ icon: github, url: 'https://github.com/pedrodesu' },
+	{ icon: IconBrandGithubFilled, url: 'https://github.com/pedrodesu' },
 ]
 
 const Landing: Component = () => (
-	<Box
-		class={cx(
-			flex({
-				alignItems: 'center',
-				gap: { base: 10, xl: 20, '2xl': 30 },
-			}),
-			container(),
-			css({ scrollSnapAlign: 'start', pt: 10, lg: { pt: 0 } }),
-		)}
+	<Center
+		gap={{ base: 10, xl: 20, '2xl': 30 }}
+		pt={{ base: { base: 14, _portrait: 0 }, lg: 0 }}
+		class={container()}
 		minH="screen"
 		id="about_me"
 	>
-		<VStack
-			h="full"
-			justify="center"
-			alignItems="start"
-			gap={{ base: 4, lg: 8 }}
-			flex={1}
-		>
+		<Wrap gap={{ base: 4, lg: 8 }} flex={1}>
 			<Box>
-				<Heading textStyle={{ base: '4xl', lg: '6xl' }}>Pedro Nobre</Heading>
-				<Heading textStyle={{ base: 'xl', sm: '2xl' }} color="gray.11">
+				<Heading textStyle={{ base: '2xl', lg: '6xl' }}>Pedro Nobre</Heading>
+				<Heading textStyle={{ base: 'lg', lg: '2xl' }} color="gray.11">
 					Systems & UI Engineer
 				</Heading>
 			</Box>
-			<Text textStyle={{ base: 'lg', sm: 'md', lg: 'lg' }}>
-				{Description.LONG}
-			</Text>
+			<Text textStyle={{ sm: 'md', lg: 'lg' }}>{Description.LONG}</Text>
 			<HStack gap={4}>
 				<For each={SOCIALS}>
-					{({ icon, url }) => (
-						<a href={url} target="_blank" rel="noopener">
-							<Image h={8} src={icon.src} />
+					{({ icon: Icon, url }) => (
+						<a
+							href={url}
+							target="_blank"
+							rel="noopener"
+							class={css({
+								fontSize: { base: '2xl', lg: '3xl' },
+								color: 'fg.muted',
+								transition: 'all',
+								_hover: { color: 'fg.default' },
+							})}
+						>
+							<Icon />
 						</a>
 					)}
 				</For>
 			</HStack>
-		</VStack>
+		</Wrap>
 		<Box
 			class="group"
 			p={3}
@@ -84,7 +81,7 @@ const Landing: Component = () => (
 				})}
 			/>
 		</Box>
-	</Box>
+	</Center>
 )
 
 export default Landing

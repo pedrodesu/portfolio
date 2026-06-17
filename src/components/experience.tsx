@@ -1,10 +1,8 @@
 import type { Component } from 'solid-js'
-import { css, cx } from 'styled-system/css'
-import { Center, Grid, VStack, Wrap } from 'styled-system/jsx'
+import { Grid, VStack, Wrap } from 'styled-system/jsx'
 import { container } from 'styled-system/patterns'
 import List from '@/components/list'
 import { Heading } from '@/components/ui/heading'
-import { Text } from '@/components/ui/text'
 import * as ExperienceInfo from '@/info/experience'
 
 const listWith = (title: string, items: ExperienceInfo.Item[]) => () => (
@@ -13,6 +11,7 @@ const listWith = (title: string, items: ExperienceInfo.Item[]) => () => (
 		<List
 			items={items.map(item => ({
 				...item,
+				subtitle: item.when.join(' — '),
 				title: `${item.role} · ${item.at}`,
 			}))}
 		/>
@@ -26,28 +25,11 @@ const Education: Component = listWith(
 )
 
 const Experience: Component = () => (
-	<VStack
-		minH="screen"
-		id="experience"
-		class={cx(container(), css({ scrollSnapAlign: 'start', pt: 20 }))}
-		gap={6}
-	>
+	<VStack minH="screen" id="experience" class={container()} pt={20} gap={6}>
 		<Grid columns={{ base: 1, lg: 2 }} gap={20} w="full">
 			<Work />
 			<Education />
 		</Grid>
-		<Center
-			fontFamily="mono"
-			fontSize="sm"
-			flexDirection="column"
-			py={8}
-			textAlign="center"
-			id="footer"
-		>
-			<Text>[ Let's build something beautiful & performance-optimized. ]</Text>
-			<Text>Proudly powered by Solid.js & Panda CSS and hosted by Vercel.</Text>
-			<Text>Made with &lt;3 by Pedro Nobre • me@pedrodesu.xyz • Porto, PT</Text>
-		</Center>
 	</VStack>
 )
 

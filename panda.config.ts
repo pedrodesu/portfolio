@@ -98,7 +98,7 @@ export default defineConfig({
 			container: {
 				defaultValues: {
 					maxWidth: 'full',
-					paddingX: { base: 12, lg: 28 },
+					paddingX: { base: 8, sm: 20, lg: 28 },
 				},
 			},
 		},
