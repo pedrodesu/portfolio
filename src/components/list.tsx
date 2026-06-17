@@ -1,7 +1,7 @@
 import { type Component, For } from 'solid-js'
 import { css, cx } from 'styled-system/css'
 import { Box, HStack, VStack } from 'styled-system/jsx'
-import { flex, wrap } from 'styled-system/patterns'
+import { wrap } from 'styled-system/patterns'
 import { Badge } from '@/components/ui/badge'
 import { Heading } from '@/components/ui/heading'
 import { Text } from '@/components/ui/text'
@@ -52,12 +52,13 @@ const List: Component<ListProps> = ({ items }) => (
 										paddingTop: '0.1cap',
 									},
 								}),
-								flex({ align: 'center' }),
 							)}
 						>
-							<span>{item.title}</span>
+							{item.title}
 							<IconArrowUpRight
 								class={css({
+									display: 'inline-block',
+									verticalAlign: 'middle',
 									fontSize: 'md',
 									translate: 'auto',
 									transition: 'all',

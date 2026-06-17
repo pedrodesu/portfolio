@@ -8,6 +8,7 @@ const Footer: Component = () => (
 		fontFamily="mono"
 		fontSize="sm"
 		flexDirection="column"
+		mt={10}
 		py={6}
 		px={10}
 		textAlign="center"
