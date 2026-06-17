@@ -2,11 +2,18 @@
   "name": "portfolio",
   "type": "module",
   "version": "3.0.0",
+  "private": true,
   "author": {
     "name": "Pedro Nobre",
-    "email": "me.pedro.nobre@pm.me",
-    "url": "https://www.pedrodesu.xyz"
+    "email": "me@pedrodesu.xyz",
+    "url": "https://pedrodesu.xyz"
   },
+  "homepage": "https://pedrodesu.xyz",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pedrodesu/portfolio.git"
+  },
+  "license": "GPL-3.0-only",
   "engines": {
     "node": ">=22.12.0",
     "bun": ">=1.3.0"
