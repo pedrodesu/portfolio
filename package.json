@@ -26,20 +26,20 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@ark-ui/solid": "^5.37.1",
-    "@astrojs/solid-js": "^6.0.1",
-    "@astrojs/vercel": "^10.0.8",
+    "@ark-ui/solid": "^5.39.1",
+    "@astrojs/solid-js": "^7.0.2",
+    "@astrojs/vercel": "^11.0.10",
     "@vercel/analytics": "^2.0.1",
-    "astro": "^6.4.8",
-    "astro-pdf": "^1.9.0",
-    "solid-js": "^1.9.13"
+    "astro": "^7.3.2",
+    "astro-pdf": "^1.10.1",
+    "solid-js": "^1.9.15"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.5",
-    "@iconify-json/tabler": "^1.2.35",
-    "@pandacss/dev": "^1.11.3",
-    "@sparticuz/chromium": "^149.0.0",
-    "puppeteer-core": "^25.1.0",
+    "@biomejs/biome": "~2.5.12",
+    "@iconify-json/tabler": "^1.2.38",
+    "@pandacss/dev": "^1.12.1",
+    "@sparticuz/chromium": "^152.0.0",
+    "puppeteer-core": "^25.10.0",
     "unplugin-icons": "^23.0.1"
   }
 }

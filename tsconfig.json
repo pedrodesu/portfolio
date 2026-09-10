@@ -9,6 +9,7 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
+      "styled-system/*": ["node_modules/.panda/styled-system/*"]
     },
     "types": ["unplugin-icons/types/solid"],
   },

@@ -1,21 +1,14 @@
 import fs from 'node:fs/promises'
-import path from 'node:path'
 import solidJs from '@astrojs/solid-js'
 import vercel from '@astrojs/vercel'
 import chromium from '@sparticuz/chromium'
 import { defineConfig, fontProviders } from 'astro/config'
 import Icons from 'unplugin-icons/vite'
 
-const realPath = await chromium.executablePath()
+const executablePath = await chromium.executablePath()
 
-// We need these hacks for the current version of `astro-pdf` to work. This should be properly fixed in the next version.
-await fs.writeFile(
-	path.resolve('.puppeteerrc.ts'),
-	`export default {
-  \texecutablePath: '${realPath}',
-  \tskipDownload: true,
-  }`,
-)
+process.env.PUPPETEER_EXECUTABLE_PATH = executablePath
+chromium.setGraphicsMode = false
 
 const { default: pdf } = await import('astro-pdf')
 
@@ -27,9 +20,10 @@ export default defineConfig({
 			pages: {
 				'/resume': true,
 			},
-			launch: {
-				args: chromium.args,
-			},
+      launch: {
+        args: chromium.args,
+        executablePath,
+      },
 			baseOptions: {
 				pdf: {
 					format: 'A4',
@@ -70,7 +64,7 @@ export default defineConfig({
 			cssVariable: '--font-cal-sans',
 		},
 	],
-	vite: {
+  vite: {
 		plugins: [
 			Icons({
 				compiler: 'solid',

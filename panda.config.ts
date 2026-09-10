@@ -17,6 +17,7 @@ import { shadows } from '@/theme/tokens/shadows'
 import { zIndex } from '@/theme/tokens/z-index'
 
 export default defineConfig({
+  outdir: 'node_modules/.panda/styled-system',
 	preflight: true,
 	include: ['./src/**/*.{js,jsx,ts,tsx,astro}'],
 	exclude: [],
@@ -103,8 +104,6 @@ export default defineConfig({
 			},
 		},
 	},
-
-	outdir: 'styled-system',
 
 	globalCss,
 	conditions,
