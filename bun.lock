@@ -17,7 +17,7 @@
         "@biomejs/biome": "~2.5.13",
         "@iconify-json/tabler": "^1.2.38",
         "@pandacss/dev": "^1.12.1",
-        "@sparticuz/chromium": "^152.0.0",
+        "@sparticuz/chromium": "^153.0.0",
         "puppeteer-core": "^25.11.0",
         "unplugin-icons": "^24.0.0",
       },
@@ -390,7 +390,7 @@
 
     "@solid-primitives/keyed": ["@solid-primitives/keyed@1.5.3", "", { "peerDependencies": { "solid-js": "^1.6.12" } }, "sha512-zNadtyYBhJSOjXtogkGHmRxjGdz9KHc8sGGVAGlUABkE8BED2tbIZoxkwSqzOwde8OcUEH0bb5DLZUWIMvyBSA=="],
 
-    "@sparticuz/chromium": ["@sparticuz/chromium@152.0.0", "", { "dependencies": { "tar-fs": "^3.1.2" } }, "sha512-ULl8f7LgwR9SaFRq7YqXEjZQoVlt+N1DAl5QgUiXDTtkqyNyLdSsbHAlSx+aya09xiv+EbBNyyok4+r2n4iQ6g=="],
+    "@sparticuz/chromium": ["@sparticuz/chromium@153.0.0", "", { "dependencies": { "tar-fs": "^3.1.2" } }, "sha512-jiGWqSvPMdu4+P9TilYqAR7yEGPEHINx+lCvE/NqNO/EHYzF/x1hUiI5T6ioVIt7dEy7n88byyT0vk+dnsgQwA=="],
 
     "@swc/helpers": ["@swc/helpers@0.5.23", "", { "dependencies": { "tslib": "^2.8.0" } }, "sha512-5lSsMOTXURePglDfvuAQUqkGek9Hg2kksOYay2m0+XR++b2NWYL/4sWyuvVBIs8oKnJaxkdi9whaL/sqN13afw=="],
 
