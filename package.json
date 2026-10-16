@@ -28,18 +28,18 @@
   "dependencies": {
     "@ark-ui/solid": "^5.39.3",
     "@astrojs/solid-js": "^7.0.2",
-    "@astrojs/vercel": "^11.0.11",
+    "@astrojs/vercel": "^11.0.14",
     "@vercel/analytics": "^2.0.1",
-    "astro": "^7.3.5",
+    "astro": "^7.3.8",
     "astro-pdf": "^1.10.1",
-    "solid-js": "^1.9.15"
+    "solid-js": "^1.9.17"
   },
   "devDependencies": {
     "@biomejs/biome": "~2.5.15",
-    "@iconify-json/tabler": "^1.2.41",
+    "@iconify-json/tabler": "^1.2.42",
     "@pandacss/dev": "^1.12.1",
     "@sparticuz/chromium": "^153.0.0",
-    "puppeteer-core": "^25.12.0",
+    "puppeteer-core": "^25.13.0",
     "unplugin-icons": "^24.0.0"
   }
 }
