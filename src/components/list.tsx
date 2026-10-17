@@ -1,22 +1,30 @@
-import { type Component, For } from 'solid-js'
+import { type Component, For, Show } from 'solid-js'
+import { SolidMarkdown, type SolidMarkdownOptions } from 'solid-markdown'
 import { css, cx } from 'styled-system/css'
 import { Box, HStack, VStack } from 'styled-system/jsx'
 import { wrap } from 'styled-system/patterns'
 import { Badge } from '@/components/ui/badge'
 import { Heading } from '@/components/ui/heading'
-import { Text } from '@/components/ui/text'
 import IconArrowUpRight from '~icons/tabler/arrow-up-right'
 
-interface Item {
+// TODO: de-duplicate from components/resume.tsx
+
+export interface Item {
 	title: string
+	subtitle?: string
+	additional?: string
+	description?: string
 	fields: string[]
-	subtitle: string
 	link: string
-	bullets: string[]
+	bullets?: string[]
 }
 
 interface ListProps {
 	items: Item[]
+}
+
+const mdComponents: SolidMarkdownOptions['components'] = {
+	code: props => <code {...props} class={css({ fontFamily: 'mono' })} />,
 }
 
 const List: Component<ListProps> = ({ items }) => (
@@ -30,31 +38,34 @@ const List: Component<ListProps> = ({ items }) => (
 					class={cx(wrap(), 'group')}
 				>
 					<Box>
-						<Heading color="gray.11">{item.subtitle}</Heading>
+						<Show when={item.additional}>
+							{additional => <Heading color="gray.11">{additional()}</Heading>}
+						</Show>
 						<Heading
 							textStyle="xl"
 							data-index={index().toString().padStart(2, '0')}
-							class={cx(
-								css({
-									position: 'relative',
-									_before: {
-										display: 'none',
-										lg: { _landscape: { display: 'block' } },
-										sm: { _portrait: { display: 'block' } },
-										fontFamily: 'mono',
-										fontSize: 'md',
-										fontWeight: 'bolder',
-										color: 'gray.4',
-										content: 'attr(data-index) "."',
-										position: 'absolute',
-										top: 0,
-										left: -10,
-										paddingTop: '0.1cap',
-									},
-								}),
-							)}
+							class={css({
+								position: 'relative',
+								_before: {
+									display: 'none',
+									lg: { _landscape: { display: 'block' } },
+									sm: { _portrait: { display: 'block' } },
+									fontFamily: 'mono',
+									fontSize: 'md',
+									fontWeight: 'bolder',
+									color: 'gray.4',
+									content: 'attr(data-index) "."',
+									position: 'absolute',
+									top: 0,
+									left: -10,
+									paddingTop: '0.1cap',
+								},
+							})}
 						>
 							{item.title}
+							<Show when={item.subtitle}>
+								{subtitle => <> · {subtitle()}</>}
+							</Show>
 							<IconArrowUpRight
 								class={css({
 									display: 'inline-block',
@@ -70,9 +81,31 @@ const List: Component<ListProps> = ({ items }) => (
 							/>
 						</Heading>
 					</Box>
-					<VStack alignItems="start" as="ul" listStyleType="circle">
-						<For each={item.bullets}>{item => <Text as="li">{item}</Text>}</For>
-					</VStack>
+					<Show when={item.description}>
+						{description => (
+							<SolidMarkdown
+								children={description()}
+								components={mdComponents}
+								class={css({ display: 'block', w: 'full' })}
+							/>
+						)}
+					</Show>
+					<Show when={item.bullets}>
+						{bullets => (
+							<VStack alignItems="start" as="ul" listStyleType="circle">
+								<For each={bullets()}>
+									{item => (
+										<li>
+											<SolidMarkdown
+												children={item}
+												components={mdComponents}
+											/>
+										</li>
+									)}
+								</For>
+							</VStack>
+						)}
+					</Show>
 					<HStack as="ul" pt={2} flexWrap="wrap">
 						<For each={item.fields}>
 							{field => (

@@ -6,6 +6,7 @@ import me from '@/assets/me.jpg'
 import { Heading } from '@/components/ui/heading'
 import { Image } from '@/components/ui/image'
 import { Text } from '@/components/ui/text'
+import * as Contact from '@/info/contact'
 import * as Description from '@/info/description'
 import IconBrandGithubFilled from '~icons/tabler/brand-github-filled'
 import IconBrandLinkedinFilled from '~icons/tabler/brand-linkedin-filled'
@@ -13,9 +14,14 @@ import IconBrandLinkedinFilled from '~icons/tabler/brand-linkedin-filled'
 const SOCIALS = [
 	{
 		icon: IconBrandLinkedinFilled,
-		url: 'https://linkedin.com/in/pedronmferreira/',
+		url: Contact.LINKEDIN,
+		label: 'linkedin',
 	},
-	{ icon: IconBrandGithubFilled, url: 'https://github.com/pedrodesu' },
+	{
+		icon: IconBrandGithubFilled,
+		url: `https://${Contact.GITHUB}`,
+		label: 'github',
+	},
 ]
 
 const Landing: Component = () => (
@@ -36,11 +42,12 @@ const Landing: Component = () => (
 			<Text textStyle={{ sm: 'md', lg: 'lg' }}>{Description.LONG}</Text>
 			<HStack gap={4}>
 				<For each={SOCIALS}>
-					{({ icon: Icon, url }) => (
+					{({ icon: Icon, url, label }) => (
 						<a
 							href={url}
 							target="_blank"
 							rel="noopener"
+							aria-label={label}
 							class={css({
 								fontSize: { base: '2xl', lg: '3xl' },
 								color: 'fg.muted',
@@ -71,7 +78,8 @@ const Landing: Component = () => (
 				objectFit="cover"
 				objectPosition="center"
 				aspectRatio="square"
-				src={me.src}
+				src={me}
+				alt="me"
 				filter="auto"
 				grayscale={1}
 				class={css({

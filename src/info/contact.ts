@@ -1,0 +1,5 @@
+export const EMAIL = 'me@pedrodesu.xyz'
+export const PHONE = '+351 965 691 292'
+export const GITHUB = 'github.com/pedrodesu'
+export const LINKEDIN = 'https://linkedin.com/in/pedronmferreira/'
+export const WEBSITE = 'pedrodesu.xyz'

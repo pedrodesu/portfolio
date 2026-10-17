@@ -1,37 +1,26 @@
 import { type Component, For, Show } from 'solid-js'
+import { SolidMarkdown, type SolidMarkdownOptions } from 'solid-markdown'
 import { css } from 'styled-system/css'
 import { Box, VStack, Wrap } from 'styled-system/jsx'
 import { flex, grid } from 'styled-system/patterns'
+import type * as List from '@/components/list'
 import { Heading } from '@/components/ui/heading'
 import { Link } from '@/components/ui/link'
 import { Text } from '@/components/ui/text'
+import * as Contact from '@/info/contact'
 import * as Description from '@/info/description'
 import * as Experience from '@/info/experience'
 
-export const SimpleBlock: Component<{
-	title?: string
-	items: string[]
-}> = props => (
-	<Box>
-		<Show when={props.title}>
-			{t => (
-				<Heading textStyle="lg" mb={2}>
-					{t()}
-				</Heading>
-			)}
-		</Show>
-		<VStack as="ul" textStyle="sm" alignItems="start" gap={1}>
-			<For each={props.items}>{item => <Text as="li">{item}</Text>}</For>
-		</VStack>
-	</Box>
-)
+const mdComponents: SolidMarkdownOptions['components'] = {
+	code: props => <code {...props} class={css({ fontFamily: 'mono' })} />,
+}
 
 export const TitledBlock: Component<{
 	class?: string
 	title?: string
 	items: {
 		title: string
-		description: string
+		content: Component
 	}[]
 }> = props => (
 	<Box>
@@ -44,12 +33,15 @@ export const TitledBlock: Component<{
 		</Show>
 		<VStack as="ul" textStyle="sm" alignItems="start" gap={4}>
 			<For each={props.items}>
-				{item => (
-					<li>
-						<Heading mb={1}>{item.title}</Heading>
-						<Text class={props.class}>{item.description}</Text>
-					</li>
-				)}
+				{item => {
+					const Content = item.content
+					return (
+						<li>
+							<Heading mb={1}>{item.title}</Heading>
+							<Content />
+						</li>
+					)
+				}}
 			</For>
 		</VStack>
 	</Box>
@@ -74,41 +66,84 @@ export const LinkBlock: Component<{
 
 export const ExperienceBlock: Component<{
 	title: string
-	items: Experience.Item[]
+	columns: number
+	items: List.Item[]
 }> = props => (
 	<Wrap>
 		<Heading textStyle="lg">{props.title}</Heading>
-		<VStack as="ul" alignItems="start" gap={6}>
+		<Box spaceY={6} columnGap="2rem" style={{ 'column-count': props.columns }}>
 			<For each={props.items}>
 				{item => (
-					<Wrap as="li" gap={2}>
+					<Wrap gap={2} flexDirection="column" breakInside="avoid">
 						<Heading fontFamily="body">
-							{item.role} ·{' '}
-							<Text display="inline" fontFamily="title">
-								{item.at}
-							</Text>{' '}
-							<Text display="inline" ml={1} textStyle="xs" color="gray.9">
-								{item.when.join(' — ')}
+							<Text as="span" fontFamily={item.subtitle ? 'unset' : 'title'}>
+								{item.title}
 							</Text>
+							<Show when={item.subtitle}>
+								{subtitle => (
+									<>
+										{' · '}
+										<Text display="inline" fontFamily="title">
+											{subtitle()}
+										</Text>
+									</>
+								)}
+							</Show>
+							<Show when={item.additional}>
+								{additional => (
+									<>
+										{' '}
+										<Text display="inline" ml={1} textStyle="xs" color="gray.9">
+											{additional()}
+										</Text>
+									</>
+								)}
+							</Show>
 						</Heading>
-						<VStack
-							alignItems="start"
-							as="ul"
-							listStyleType="circle"
-							textStyle="sm"
-							ml={4}
-						>
-							<For each={item.bullets}>
-								{item => <Text as="li">{item}</Text>}
-							</For>
-						</VStack>
+						<Box spaceY={2}>
+							<Show when={item.description}>
+								{description => (
+									<SolidMarkdown
+										children={description()}
+										components={mdComponents}
+										class={css({
+											display: 'block',
+											w: 'full',
+											textStyle: 'sm',
+										})}
+									/>
+								)}
+							</Show>
+							<Show when={item.bullets}>
+								{bullets => (
+									<VStack
+										alignItems="start"
+										as="ul"
+										listStyleType="circle"
+										textStyle="sm"
+										ml={4}
+									>
+										<For each={bullets()}>
+											{item => (
+												<li>
+													<SolidMarkdown
+														children={item}
+														components={mdComponents}
+													/>
+												</li>
+											)}
+										</For>
+									</VStack>
+								)}
+							</Show>
+						</Box>
 						<Text mt={1} textStyle="xs" fontFamily="mono">
 							—<span class={css({ ml: 4 })}>{item.fields.join(' · ')}</span>
 						</Text>
 					</Wrap>
 				)}
 			</For>
-		</VStack>
+		</Box>
 	</Wrap>
 )
 
@@ -124,10 +159,28 @@ const Resume: Component = () => (
 			</header>
 
 			<Wrap gap={8}>
-				<ExperienceBlock title="Work Experience" items={Experience.WORK} />
 				<ExperienceBlock
-					title="Formal Education"
-					items={Experience.EDUCATION}
+					title="Work Experience"
+					columns={1}
+					items={Experience.WORK.map(item => ({
+						...item,
+						additional: item.when.join(' — '),
+						subtitle: item.at,
+					}))}
+				/>
+				<ExperienceBlock
+					title="Projects & Contributions"
+					columns={2}
+					items={Experience.PROJECTS.map(item => {
+						const work = `${item.ownership ?? Experience.PROJECT_DEFAULT_OWNER}/${item.name}`
+						const link = `${Experience.PROJECT_LINK_BASE}/${work}`
+
+						return {
+							...item,
+							title: work,
+							link,
+						}
+					})}
 				/>
 			</Wrap>
 		</section>
@@ -140,75 +193,103 @@ const Resume: Component = () => (
 		>
 			<LinkBlock
 				items={[
-					{ value: 'me@pedrodesu.xyz', hrefFn: v => `mailto:${v}` },
-					{ value: '+351 965 691 292', hrefFn: v => `tel:${v}` },
-					{ value: 'github.com/pedrodesu', hrefFn: v => `https://${v}` },
-					{ value: 'pedrodesu.xyz', hrefFn: v => `https://${v}` },
+					{ value: Contact.EMAIL, hrefFn: v => `mailto:${v}` },
+					{ value: Contact.PHONE, hrefFn: v => `tel:${v}` },
+					{ value: Contact.GITHUB, hrefFn: v => `https://${v}` },
+					{ value: Contact.WEBSITE, hrefFn: v => `https://${v}` },
 				]}
 			/>
 			<TitledBlock
 				title="Skills"
-				class={css({ fontFamily: 'mono', fontSize: 'xs' })}
 				items={[
 					{
-						title: 'Programming languages',
-						description: [
-							'Rust',
-							'Zig',
-							'HTML',
-							'CSS',
-							'JavaScript/TypeScript',
-							'Golang',
-							'C',
-							'Java',
-						].join(' · '),
+						title: 'Languages',
+						content: () => (
+							<Text fontFamily="mono" fontSize="xs">
+								{[
+									'Rust',
+									'HTML',
+									'CSS',
+									'JavaScript/TypeScript',
+									'Golang',
+									'C',
+									'Java',
+								].join(' · ')}
+							</Text>
+						),
 					},
 					{
 						title: 'Technologies & Environments',
-						description: [
-							'node.js',
-							'Bun',
-							'Deno.js',
-							'tokio',
-							'Solid.js',
-							'React',
-							'Next.js',
-							'Tailwind CSS',
-							'Panda CSS',
-							'styled-components',
-							'MongoDB',
-							'SQL',
-							'LLVM',
-							'*nix',
-						].join(' · '),
+						content: () => (
+							<Text fontFamily="mono" fontSize="xs">
+								{[
+									'node.js',
+									'Bun',
+									'Deno.js',
+									'tokio',
+									'Solid.js',
+									'React',
+									'Next.js',
+									'Tailwind CSS',
+									'Panda CSS',
+									'styled-components',
+									'MongoDB',
+									'SQL',
+									'LLVM',
+									'*nix',
+								].join(' · ')}
+							</Text>
+						),
 					},
 					{
 						title: 'Tooling & Platforms',
-						description: [
-							'Git',
-							'GitHub',
-							'Netlify',
-							'Vercel',
-							'Heroku',
-							'Firebase',
-							'Docker',
-						].join(' · '),
+						content: () => (
+							<Text fontFamily="mono" fontSize="xs">
+								{['Git', 'Docker', 'CI/CD pipelines'].join(' · ')}
+							</Text>
+						),
 					},
 				]}
 			/>
 			<TitledBlock
-				title="Languages"
+				title="Education"
 				items={[
-					{ title: 'Portuguese', description: 'Native Proficiency' },
-					{ title: 'English', description: 'Full Professional Proficiency' },
-					{ title: 'Spanish', description: 'Professional Working Proficiency' },
-					{ title: 'French', description: 'Limited Working Proficiency' },
-				]}
-			/>
-			<SimpleBlock
-				title="Interests"
-				items={[
-					'Gaming, powerlifting & nutrition, open-source, Linux ricing & hardening',
+					{
+						title: 'Universidade do Minho',
+						content: () => (
+							<Wrap>
+								<Text>
+									Undergraduate Coursework in CS
+									<Text as="span" display="inline" ml={1} color="gray.9">
+										— 2024
+									</Text>
+								</Text>
+								<Text>Functional programming & OOP systems</Text>
+								<Text fontFamily="mono" fontSize="xs">
+									— Haskell · C · Java
+								</Text>
+							</Wrap>
+						),
+					},
+					{
+						title: '42 Porto',
+						content: () => (
+							<Wrap>
+								<Text>
+									Software Engineering Curriculum
+									<Text as="span" display="inline" ml={1} color="gray.9">
+										— 2022
+									</Text>
+								</Text>
+								<Text>
+									Unix-compliant engineering & peer-to-peer methodology
+								</Text>
+								<Text fontFamily="mono" fontSize="xs">
+									— *nix · Shell · C · C++
+								</Text>
+							</Wrap>
+						),
+					},
 				]}
 			/>
 		</VStack>

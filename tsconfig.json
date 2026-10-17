@@ -1,16 +1,14 @@
 {
-  "extends": "astro/tsconfigs/strict",
-  "include": [".astro/types.d.ts", "**/*"],
-  "exclude": ["dist"],
-  "compilerOptions": {
-    "ignoreDeprecations": "6.0",
-    "jsx": "preserve",
-    "jsxImportSource": "solid-js",
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["./src/*"],
-      "styled-system/*": ["node_modules/.panda/styled-system/*"]
-    },
-    "types": ["unplugin-icons/types/solid"],
-  },
+	"extends": "astro/tsconfigs/strict",
+	"include": [".astro/types.d.ts", "**/*"],
+	"exclude": ["dist"],
+	"compilerOptions": {
+		"jsx": "preserve",
+		"jsxImportSource": "solid-js",
+		"paths": {
+			"@/*": ["./src/*"],
+			"styled-system/*": ["./node_modules/.panda/styled-system/*"]
+		},
+		"types": ["unplugin-icons/types/solid"]
+	}
 }

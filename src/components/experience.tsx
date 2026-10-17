@@ -5,23 +5,36 @@ import List from '@/components/list'
 import { Heading } from '@/components/ui/heading'
 import * as ExperienceInfo from '@/info/experience'
 
-const listWith = (title: string, items: ExperienceInfo.Item[]) => () => (
+// TODO: de-duplicate from components/resume.tsx
+const Work: Component = () => (
 	<Wrap flexDirection="column" gap={6}>
-		<Heading textStyle="4xl">{title}</Heading>
+		<Heading textStyle="4xl">Work Experience</Heading>
 		<List
-			items={items.map(item => ({
+			items={ExperienceInfo.WORK.map(item => ({
 				...item,
-				subtitle: item.when.join(' — '),
-				title: `${item.role} · ${item.at}`,
+				additional: item.when.join(' — '),
+				subtitle: item.at,
 			}))}
 		/>
 	</Wrap>
 )
 
-const Work: Component = listWith('Work Experience', ExperienceInfo.WORK)
-const Education: Component = listWith(
-	'Formal Education',
-	ExperienceInfo.EDUCATION,
+const Education: Component = () => (
+	<Wrap flexDirection="column" gap={6}>
+		<Heading textStyle="4xl">Projects & Contributions</Heading>
+		<List
+			items={ExperienceInfo.PROJECTS.map(item => {
+				const work = `${item.ownership ?? ExperienceInfo.PROJECT_DEFAULT_OWNER}/${item.name}`
+				const link = `${ExperienceInfo.PROJECT_LINK_BASE}/${work}`
+
+				return {
+					...item,
+					title: work,
+					link,
+				}
+			})}
+		/>
+	</Wrap>
 )
 
 const Experience: Component = () => (

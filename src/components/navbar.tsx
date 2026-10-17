@@ -4,6 +4,7 @@ import { Box, HStack } from 'styled-system/jsx'
 import { container, flex } from 'styled-system/patterns'
 import { Button, ButtonGroup } from '@/components/ui/button'
 import { Link } from '@/components/ui/link'
+import * as Contact from '@/info/contact'
 import IconArrowDown from '~icons/tabler/arrow-down'
 import IconSend from '~icons/tabler/send'
 
@@ -20,8 +21,11 @@ const LINKS = [
 
 const Navbar: Component = () => (
 	<header
+		data-scrolled="false"
 		class={cx(
-			container(),
+			container({
+				position: 'fixed',
+			}),
 			flex({
 				align: 'center',
 				justify: 'space-between',
@@ -29,12 +33,16 @@ const Navbar: Component = () => (
 			css({
 				w: 'full',
 				h: 14,
-				position: 'fixed',
 				top: 0,
 				zIndex: 'sticky',
-				bg: 'bg',
+				bg: 'transparent',
 				borderBottom: '1px solid',
 				borderBottomColor: 'border',
+				transition: 'all .25s',
+				'&[data-scrolled="true"]': {
+					backdropFilter: 'blur(48px)',
+					borderBottomColor: 'transparent',
+				},
 			}),
 		)}
 	>
@@ -54,7 +62,7 @@ const Navbar: Component = () => (
 				size="sm"
 				variant="surface"
 				asChild={props => (
-					<a href={`mailto:me@pedrodesu.xyz`} {...props()}>
+					<a href={`mailto:${Contact.EMAIL}`} {...props()}>
 						<span class={css({ display: 'none', sm: { display: 'inline' } })}>
 							Email me
 						</span>

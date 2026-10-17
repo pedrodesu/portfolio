@@ -1,6 +1,8 @@
 import type { Component } from 'solid-js'
+import { css } from 'styled-system/css'
 import { Center } from 'styled-system/jsx'
 import { Text } from '@/components/ui/text'
+import * as Contact from '@/info/contact'
 
 const Footer: Component = () => (
 	<Center
@@ -18,7 +20,16 @@ const Footer: Component = () => (
 	>
 		<Text>[ Let's build something beautiful & performance-optimized. ]</Text>
 		<Text>Proudly powered by Solid.js & Panda CSS and hosted by Vercel.</Text>
-		<Text>Made with &lt;3 by Pedro Nobre • me@pedrodesu.xyz • Porto, PT</Text>
+		<Text>
+			Made with &lt;3 by Pedro Nobre •{' '}
+			<a
+				href={`mailto:${Contact.EMAIL}`}
+				class={css({ _hover: { textDecoration: 'underline' } })}
+			>
+				{Contact.EMAIL}
+			</a>{' '}
+			• Porto, PT
+		</Text>
 	</Center>
 )
 
