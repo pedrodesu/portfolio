@@ -19,7 +19,7 @@ const Footer: Component = () => (
 		borderTopColor="border"
 	>
 		<Text>[ Let's build something beautiful & performance-optimized. ]</Text>
-		<Text>Proudly powered by Solid.js & Panda CSS and hosted by Vercel.</Text>
+		<Text>Proudly powered by bun.js & Solid.js and hosted with Vercel.</Text>
 		<Text>
 			Made with &lt;3 by Pedro Nobre •{' '}
 			<a
