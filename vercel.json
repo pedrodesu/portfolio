@@ -1,4 +1,0 @@
-{
-  "installCommand": "bun install && bunx playwright install chromium",
-  "buildCommand": "bun run build"
-}

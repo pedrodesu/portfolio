@@ -5,7 +5,8 @@ import solidJs from '@astrojs/solid-js'
 import vercel from '@astrojs/vercel'
 import pandacss from '@pandacss/vite'
 import { defineConfig, fontProviders } from 'astro/config'
-import { chromium } from 'playwright'
+import { chromium as playwright } from 'playwright-core'
+import chromium from '@sparticuz/chromium'
 import icons from 'unplugin-icons/vite'
 
 export default defineConfig({
@@ -18,9 +19,15 @@ export default defineConfig({
 				'astro:build:done': async ({ dir }) => {
 					const distDir = fileURLToPath(dir)
 					const resumeHtmlPath = path.join(distDir, 'resume', 'index.html')
-					const pdfOutputPath = path.join(distDir, 'resume.pdf')
+          const pdfOutputPath = path.join(distDir, 'resume.pdf')
 
-					const browser = await chromium.launch()
+          chromium.setGraphicsMode = false
+
+          const browser = await playwright.launch({
+            args: chromium.args,
+            executablePath: await chromium.executablePath(),
+            headless: true,
+          })
 					const page = await browser.newPage()
 
 					await page.route('**/_astro/**', route => {
@@ -74,8 +81,7 @@ export default defineConfig({
 		{
 			provider: fontProviders.fontsource(),
 			name: 'Cal Sans',
-      cssVariable: '--font-cal-sans',
-			weights: [400, 500],
+      cssVariable: '--font-cal-sans'
     }
 	],
 	vite: {
