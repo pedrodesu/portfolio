@@ -27,10 +27,10 @@
 	"dependencies": {
 		"@ark-ui/solid": "^5.39.3",
 		"@astrojs/solid-js": "^7.1.0",
-		"@astrojs/vercel": "^11.0.15",
+		"@astrojs/vercel": "^11.0.16",
 		"@sparticuz/chromium": "^153.0.0",
 		"@vercel/analytics": "^2.0.1",
-		"astro": "^7.4.0",
+		"astro": "^7.4.1",
 		"playwright-core": "^1.64.1",
 		"solid-js": "^1.9.17",
 		"solid-markdown": "^2.1.1"
@@ -38,8 +38,8 @@
 	"devDependencies": {
 		"@biomejs/biome": "^2.5.15",
 		"@iconify-json/tabler": "^1.2.42",
-		"@pandacss/dev": "^2.2.0",
-		"@pandacss/vite": "^2.2.0",
+		"@pandacss/dev": "^2.3.0",
+		"@pandacss/vite": "^2.3.0",
 		"unplugin-icons": "^24.0.0"
 	}
 }
