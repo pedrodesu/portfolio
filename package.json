@@ -25,21 +25,21 @@
 		"astro": "astro"
 	},
 	"dependencies": {
-		"@ark-ui/solid": "^5.39.3",
-		"@astrojs/solid-js": "^7.1.1",
-		"@astrojs/vercel": "^11.0.16",
+		"@ark-ui/solid": "^5.40.0",
+		"@astrojs/solid-js": "^7.1.2",
+		"@astrojs/vercel": "^11.0.18",
 		"@sparticuz/chromium": "^153.0.0",
 		"@vercel/analytics": "^2.0.1",
-		"astro": "^7.4.2",
+		"astro": "^7.4.5",
 		"playwright-core": "^1.64.1",
-		"solid-js": "^1.9.17",
+		"solid-js": "^1.9.18",
 		"solid-markdown": "^2.1.1"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "^2.6.3",
-		"@iconify-json/tabler": "^1.2.42",
-		"@pandacss/dev": "^2.4.0",
-		"@pandacss/vite": "^2.4.0",
+		"@biomejs/biome": "^2.6.4",
+		"@iconify-json/tabler": "^1.2.43",
+		"@pandacss/dev": "^2.5.0",
+		"@pandacss/vite": "^2.5.0",
 		"unplugin-icons": "^24.0.0"
 	}
 }
