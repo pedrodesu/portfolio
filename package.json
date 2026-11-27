@@ -25,12 +25,12 @@
 		"astro": "astro"
 	},
 	"dependencies": {
-		"@ark-ui/solid": "^5.40.0",
+		"@ark-ui/solid": "^5.40.1",
 		"@astrojs/solid-js": "^7.1.6",
 		"@astrojs/vercel": "^11.0.22",
 		"@sparticuz/chromium": "^153.0.0",
 		"@vercel/analytics": "^2.0.1",
-		"astro": "^7.4.12",
+		"astro": "^7.4.13",
 		"playwright-core": "^1.65.1",
 		"solid-js": "^1.9.19",
 		"solid-markdown": "^2.1.1"
@@ -38,8 +38,8 @@
 	"devDependencies": {
 		"@biomejs/biome": "^2.6.8",
 		"@iconify-json/tabler": "^1.2.46",
-		"@pandacss/dev": "^2.5.0",
-		"@pandacss/vite": "^2.5.0",
+		"@pandacss/dev": "^2.6.0",
+		"@pandacss/vite": "^2.6.0",
 		"unplugin-icons": "^24.0.0"
 	}
 }
